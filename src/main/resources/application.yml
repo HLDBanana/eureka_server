@@ -1,16 +1,28 @@
+spring:
+  application:
+    name: eureka-server
+  #zipkin:
+    #base-url: http://127.0.0.1:11008
+
 server:
   enable-self-preservation: false
-  port: 8761
+  port: 1111
+
+#spring:
+
 
 eureka:
   instance:
-    #prefer-ip-address: true
-    #instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 单机模式设置true，集群模式设置false
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
     hostname: localhost
   client:
-    #声明自己是个服务端
-    registerWithEureka: false
+    #false:不作为一个客户端注册到注册中心,是否将自身的实例信息注册到eureka服务器
+    #registerWithEureka: true
+    # false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
     fetch-registry: false
     #fetchRegistry: false
     serviceUrl:
+      #集群模式用逗号分隔 http://39.105.33.42:1112/eureka/,http://39.105.33.42:1113/eureka/
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
