@@ -6,7 +6,7 @@ spring:
 
 server:
   enable-self-preservation: false
-  port: 1111
+  port: 31000
 
 #spring:
 
@@ -14,7 +14,7 @@ server:
 eureka:
   instance:
     # 单机模式设置true，集群模式设置false
-    prefer-ip-address: true
+    prefer-ip-address: false
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
     hostname: localhost
   client:
