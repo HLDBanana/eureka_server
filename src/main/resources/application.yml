@@ -25,4 +25,4 @@ eureka:
     #fetchRegistry: false
     serviceUrl:
       #集群模式用逗号分隔 http://39.105.33.42:1112/eureka/,http://39.105.33.42:1113/eureka/
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:31000/eureka/
